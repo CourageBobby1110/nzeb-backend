@@ -6,12 +6,16 @@ A Flask-based REST API for simulating and analyzing Net Zero Energy Building (NZ
 [![Flask Version](https://img.shields.io/badge/flask-3.0.0-green)](https://flask.palletsprojects.com/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.2-orange)](https://scikit-learn.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://nzeb-model-backend.onrender.com)
+
+> **🚀 Live Demo**: [https://nzeb-model-backend.onrender.com](https://nzeb-model-backend.onrender.com)
 
 ---
 
 ## Table of Contents
 
 - [Overview](#overview)
+- [Live Demo](#live-demo)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [System Architecture](#system-architecture)
@@ -41,6 +45,95 @@ This API simulates a comprehensive Hybrid Renewable Energy System (HRES) for Net
 - **Environmental Impact**: CO₂ emission reduction calculations
 - **Scenario Modeling**: Grid outage simulations and system resilience analysis
 - **Regression Analysis**: Machine learning predictions for PV output optimization
+
+---
+
+## Live Demo
+
+**🌐 Production API**: [https://nzeb-model-backend.onrender.com](https://nzeb-model-backend.onrender.com)
+
+**Hosting**: Deployed on [Render](https://render.com)
+
+**Status**: ✅ Active and Running
+
+### Quick Test
+
+Test the live API with these commands:
+
+**cURL Test**:
+```bash
+curl -X POST https://nzeb-model-backend.onrender.com/api/nzeb_model \
+  -H "Content-Type: application/json" \
+  -d '{
+    "solar_inputs": {
+      "area_pv": 100,
+      "efficiency_pv": 0.18,
+      "irradiance": 0.8
+    },
+    "wind_inputs": {
+      "air_density": 1.225,
+      "swept_area": 50,
+      "power_coefficient": 0.4,
+      "wind_speed": 8,
+      "v_cut_in": 3,
+      "v_rated": 12,
+      "v_cut_out": 25,
+      "p_rated": 10,
+      "delta_t": 1
+    },
+    "biogas_inputs": {
+      "methane_yield": 0.3,
+      "mass_feedstock": 100,
+      "efficiency_bg": 0.35,
+      "hhv_ch4": 10
+    },
+    "load_demand": 50,
+    "grid_energy": 0,
+    "battery_inputs": {
+      "capacity": 100,
+      "initial_soc": 0.5,
+      "eta_c": 0.9,
+      "eta_d": 0.9
+    },
+    "lcca_inputs": {
+      "c_init": 50000,
+      "c_om": 2000,
+      "c_rep": 10000,
+      "s": 5000,
+      "r": 0.05,
+      "n": 20
+    },
+    "co2_inputs": {
+      "emission_factor": 0.82
+    }
+  }'
+```
+
+**Python Test**:
+```python
+import requests
+
+url = "https://nzeb-model-backend.onrender.com/api/nzeb_model"
+response = requests.post(url, json={...})  # Add your payload
+print(response.json())
+```
+
+**JavaScript Test**:
+```javascript
+fetch('https://nzeb-model-backend.onrender.com/api/nzeb_model', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({...})  // Add your payload
+})
+.then(res => res.json())
+.then(data => console.log(data));
+```
+
+### ⚠️ Important Notes
+
+- **Cold Start**: The API may take 30-60 seconds to respond on the first request after inactivity (Render's free tier spins down inactive services)
+- **CORS**: Enabled for all origins - safe for frontend integration
+- **Rate Limiting**: Please be mindful of request frequency
 
 ---
 
@@ -130,7 +223,7 @@ This API simulates a comprehensive Hybrid Renewable Energy System (HRES) for Net
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Habeeb-Ajibola/nzeb-backend.git
-   
+   cd nzeb-backend
    ```
 
 2. **Create a virtual environment**:
@@ -166,9 +259,8 @@ This API simulates a comprehensive Hybrid Renewable Energy System (HRES) for Net
    ```
 
 6. **Access the API**:
-   ```
-   http://localhost:5001
-   ```
+   - **Local Development**: `http://localhost:5001`
+   - **Live Production**: `https://nzeb-model-backend.onrender.com`
 
 ---
 
@@ -462,7 +554,11 @@ import requests
 import json
 
 # API endpoint
+# Use local for development
 url = "http://localhost:5001/api/nzeb_model"
+
+# Or use live production API
+# url = "https://nzeb-model-backend.onrender.com/api/nzeb_model"
 
 # Simulation parameters
 payload = {
@@ -542,7 +638,11 @@ else:
 ```javascript
 const fetch = require('node-fetch');
 
+// Use local for development
 const url = 'http://localhost:5001/api/nzeb_model';
+
+// Or use live production API
+// const url = 'https://nzeb-model-backend.onrender.com/api/nzeb_model';
 
 const payload = {
   solar_inputs: {
@@ -732,7 +832,7 @@ curl -X POST http://localhost:5001/api/nzeb_model \
 ## Project Structure
 
 ```
-nzeb-hres-api/
+nzeb-backend/
 │
 ├── app.py                  # Main Flask application
 ├── models.py              # Energy calculation models
@@ -740,7 +840,10 @@ nzeb-hres-api/
 ├── README.md             # Project documentation
 ├── LICENSE               # MIT License
 ├── .gitignore           # Git ignore rules
-
+│
+└── tests/               # Unit tests (optional)
+    ├── test_models.py
+    └── test_api.py
 ```
 
 ---
@@ -818,6 +921,119 @@ scikit-learn==1.3.2
 
 ---
 
+## Deployment
+
+### Current Deployment
+
+This API is currently deployed and accessible at:
+
+- **Production URL**: [https://nzeb-model-backend.onrender.com](https://nzeb-model-backend.onrender.com)
+- **Hosting Platform**: [Render](https://render.com)
+- **Status**: ✅ Active and Running
+- **Region**: Auto-selected by Render
+- **Deployment**: Automatic from GitHub (`main` branch)
+
+### Deploy Your Own Instance
+
+<details>
+<summary>Click to expand deployment instructions</summary>
+
+#### Deploy to Render (Recommended)
+
+1. **Fork this repository** to your GitHub account
+
+2. **Sign up for Render** at [https://render.com](https://render.com)
+
+3. **Create a new Web Service**:
+   - Click "New +" → "Web Service"
+   - Connect your GitHub account
+   - Select the `nzeb-backend` repository
+   - Configure the service:
+     - **Name**: `nzeb-model-backend` (or your preferred name)
+     - **Region**: Choose closest to your users
+     - **Branch**: `main`
+     - **Build Command**: `pip install -r requirements.txt`
+     - **Start Command**: `gunicorn app:app`
+
+4. **Add Environment Variables** (if needed):
+   - `PYTHON_VERSION`: `3.11.0` (optional, Render auto-detects)
+   - `PORT`: `5001` (optional, Render sets this automatically)
+
+5. **Deploy**: Click "Create Web Service"
+
+6. **Wait for deployment**: Usually takes 2-5 minutes
+
+7. **Your API is live!** Access it at: `https://your-service-name.onrender.com`
+
+#### Important: Add Gunicorn for Production
+
+Add to your `requirements.txt`:
+```txt
+Flask==3.0.0
+flask-cors==4.0.0
+numpy==1.26.2
+scikit-learn==1.3.2
+gunicorn==21.2.0
+```
+
+#### Deploy to Heroku
+
+1. **Install Heroku CLI** and login:
+   ```bash
+   heroku login
+   ```
+
+2. **Create a `Procfile`**:
+   ```
+   web: gunicorn app:app
+   ```
+
+3. **Deploy**:
+   ```bash
+   heroku create nzeb-model-api
+   git push heroku main
+   ```
+
+4. **Open your app**:
+   ```bash
+   heroku open
+   ```
+
+#### Deploy to Railway
+
+1. **Connect your GitHub repository** to Railway
+
+2. **Railway auto-detects** Flask apps
+
+3. **Add environment variables** if needed
+
+4. **Deploy** with one click
+
+#### Deploy to AWS/Azure/GCP
+
+For enterprise deployments:
+- Use **Docker** for containerization
+- Deploy to **ECS/EKS** (AWS), **App Service** (Azure), or **Cloud Run** (GCP)
+- Add **load balancing** and **auto-scaling** for high traffic
+- Implement **CI/CD pipelines** for automated deployments
+
+</details>
+
+### Performance Notes
+
+**Render Free Tier Considerations**:
+- ⚠️ Services spin down after 15 minutes of inactivity
+- 🕐 First request after inactivity may take 30-60 seconds (cold start)
+- 💡 Consider upgrading to paid tier for production use to avoid cold starts
+- 📊 Free tier includes 750 hours/month
+
+**Optimization Tips**:
+- Use keep-alive services or scheduled pings to prevent spin-down
+- Implement caching for frequently used calculations
+- Consider upgrading to Render's paid tier for 24/7 availability
+
+---
+
 ## Contributing
 
 Contributions are welcome! Please follow these guidelines:
@@ -871,6 +1087,15 @@ pip install -r requirements.txt
 ```python
 app.run(debug=True, port=5002)
 ```
+
+---
+
+**Issue**: Slow first request or timeout
+
+**Solution**: This is expected behavior on Render's free tier (cold start). The service spins down after 15 minutes of inactivity. Subsequent requests will be fast. To prevent this:
+- Upgrade to Render's paid tier for 24/7 availability
+- Use a service like [UptimeRobot](https://uptimerobot.com) to ping your API every 5 minutes
+- Implement a scheduled task to keep the service warm
 
 ---
 
@@ -954,7 +1179,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ```
 MIT License
 
-Copyright (c) 2025 [Your Name]
+Copyright (c) 2025 Habeeb Ajibola
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -981,9 +1206,9 @@ If you use this API in your research, please cite:
 ```bibtex
 @software{nzeb_hres_api,
   title = {NZEB Hybrid Renewable Energy System API},
-  author = {Habeeb},
+  author = {Habeeb Ajibola},
   year = {2025},
-  url = {https://github.com/Habeeb-Ajibola/nzeb-backend.git}
+  url = {https://github.com/Habeeb-Ajibola/nzeb-backend}
 }
 ```
 
@@ -991,13 +1216,13 @@ If you use this API in your research, please cite:
 
 ## Contact
 
-**Project Maintainer**:Habeeb
+**Project Maintainer**: Habeeb Ajibola
 
 **Email**: ismailbadmusha@gmail.com
 
-**Project Link**: [https://github.com/Habeeb-Ajibola/nzeb-backend.git](https://github.com/Habeeb-Ajibola/nzeb-backend.git)
+**Project Link**: [https://github.com/Habeeb-Ajibola/nzeb-backend](https://github.com/Habeeb-Ajibola/nzeb-backend)
 
-**Issue Tracker**: [https://github.com/Habeeb-Ajibola/nzeb-backend.git](https://github.com/Habeeb-Ajibola/nzeb-backend.git)
+**Issue Tracker**: [https://github.com/Habeeb-Ajibola/nzeb-backend/issues](https://github.com/Habeeb-Ajibola/nzeb-backend/issues)
 
 For questions, bug reports, or feature requests, please open an issue on GitHub.
 
