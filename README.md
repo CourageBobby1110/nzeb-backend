@@ -983,7 +983,7 @@ If you use this API in your research, please cite:
   title = {NZEB Hybrid Renewable Energy System API},
   author = {Habeeb},
   year = {2025},
-  url = {https://github.com/yourusername/nzeb-hres-api}
+  url = {https://github.com/Habeeb-Ajibola/nzeb-backend.git}
 }
 ```
 
@@ -995,9 +995,9 @@ If you use this API in your research, please cite:
 
 **Email**: ismailbadmusha@gmail.com
 
-**Project Link**: [https://github.com/yourusername/nzeb-hres-api](https://github.com/yourusername/nzeb-hres-api)
+**Project Link**: [https://github.com/Habeeb-Ajibola/nzeb-backend.git](https://github.com/Habeeb-Ajibola/nzeb-backend.git)
 
-**Issue Tracker**: [https://github.com/yourusername/nzeb-hres-api/issues](https://github.com/yourusername/nzeb-hres-api/issues)
+**Issue Tracker**: [https://github.com/Habeeb-Ajibola/nzeb-backend.git](https://github.com/Habeeb-Ajibola/nzeb-backend.git)
 
 For questions, bug reports, or feature requests, please open an issue on GitHub.
 
@@ -1010,7 +1010,7 @@ For questions, bug reports, or feature requests, please open an issue on GitHub.
 
 Made with ❤️ for sustainable energy solutions
 
-[![Stars](https://img.shields.io/github/stars/yourusername/nzeb-hres-api?style=social)](https://github.com/yourusername/nzeb-hres-api)
-[![Forks](https://img.shields.io/github/forks/yourusername/nzeb-hres-api?style=social)](https://github.com/yourusername/nzeb-hres-api)
+[![Stars](https://img.shields.io/github/stars/Habeeb-Ajibola/nzeb-backend?style=social)](https://github.com/Habeeb-Ajibola/nzeb-backend)
+[![Forks](https://img.shields.io/github/forks/Habeeb-Ajibola/nzeb-backend?style=social)](https://github.com/Habeeb-Ajibola/nzeb-backend)
 
 </div>
