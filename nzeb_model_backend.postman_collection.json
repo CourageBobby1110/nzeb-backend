@@ -1,0 +1,40 @@
+{
+  "info": {
+    "_postman_id": "848e6583-0574-4279-81fc-58957488392f",
+    "name": "NZEB Model Backend",
+    "description": "Postman collection for the NZEB Model Backend API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "NZEB Model Simulation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"solar_inputs\": {\n        \"area_pv\": 20,\n        \"efficiency_pv\": 0.18,\n        \"irradiance\": 5.5\n    },\n    \"wind_inputs\": {\n        \"air_density\": 1.225,\n        \"swept_area\": 50,\n        \"power_coefficient\": 0.4,\n        \"wind_speed\": 8,\n        \"v_cut_in\": 3,\n        \"v_rated\": 12,\n        \"v_cut_out\": 25,\n        \"p_rated\": 10,\n        \"delta_t\": 24\n    },\n    \"biogas_inputs\": {\n        \"methane_yield\": 0.4,\n        \"mass_feedstock\": 500,\n        \"efficiency_bg\": 0.35,\n        \"hhv_ch4\": 10\n    },\n    \"load_demand\": 100,\n    \"grid_energy\": 50,\n    \"battery_inputs\": {\n        \"capacity\": 20,\n        \"initial_soc\": 0.5,\n        \"eta_c\": 0.9,\n        \"eta_d\": 0.9\n    },\n    \"lcca_inputs\": {\n        \"c_init\": 50000,\n        \"c_om\": 1000,\n        \"c_rep\": 5000,\n        \"s\": 2000,\n        \"r\": 0.05,\n        \"n\": 20\n    },\n    \"co2_inputs\": {\n        \"emission_factor\": 0.8\n    },\n    \"scenario\": \"grid_outage\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://nzeb-model-backend.onrender.com/api/nzeb_model",
+          "protocol": "https",
+          "host": ["nzeb-model-backend", "onrender", "com"],
+          "path": ["api", "nzeb_model"]
+        },
+        "description": "Calculates the NZEB model simulation based on various renewable energy inputs."
+      },
+      "response": []
+    }
+  ]
+}
